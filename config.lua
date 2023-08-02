@@ -148,3 +148,14 @@ require("user.autocommands").config()
 -- Additional Keybindings
 -- =========================================
 require("user.keybindings").config()
+
+-- Custom config
+lvim.format_on_save = true
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.insert_mode["jj"] = "<Esc>"
+
+-- config opt
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.relativenumber = false
+vim.opt.wrap = true

@@ -43,7 +43,7 @@ end
 -- Debug bundle
 -- Run :MasonInstall java-debug-adapter
 local extra_bundles =
-  vim.fn.glob(mason_path .. "/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", true)
+    vim.fn.glob(mason_path .. "/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar", true)
 if #extra_bundles == 0 then
   extra_bundles = vim.fn.glob(
     mason_path .. "/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
@@ -118,11 +118,7 @@ local config = {
         },
       },
       format = {
-        enabled = true,
-        settings = {
-          profile = "GoogleStyle",
-          url = home .. "/.config/lvim/.java-google-formatter.xml",
-        },
+        enabled = false,
       },
     },
     signatureHelp = { enabled = true },
@@ -159,6 +155,11 @@ local config = {
   init_options = {
     bundles = bundles,
   },
+}
+
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  { command = "google_java_format", filetypes = { "java" }, extra_args = { "--aosp" }, },
 }
 
 jdtls.start_or_attach(config)
@@ -217,5 +218,5 @@ local vmappings = {
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
 
-vim.cmd [[setlocal shiftwidth=2]]
-vim.cmd [[setlocal tabstop=2]]
+vim.cmd [[setlocal shiftwidth=4]]
+vim.cmd [[setlocal tabstop=4]]
